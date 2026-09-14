@@ -430,5 +430,75 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://web-ibekasikab.mocco.co.id/login",
     status: "active"
+  },
+  {
+    id: "044",
+    name: "Srikandi",
+    description: "Sistem Informasi Kearsipan Dinamis Terintegrasi untuk pengelolaan tata naskah dinas dan arsip pemerintahan daerah secara elektronik.",
+    category: "Administrasi Pemerintahan",
+    agency: "Dinas Arsip dan Perpustakaan",
+    logo: "/logos/default.png",
+    url: "https://srikandi.arsip.go.id/",
+    status: "active"
+  },
+  {
+    id: "045",
+    name: "SIPD",
+    description: "Sistem Informasi Pemerintahan Daerah untuk perencanaan, penganggaran, pelaksanaan, dan penatausahaan keuangan daerah.",
+    category: "Administrasi Pemerintahan",
+    agency: "Bappeda / BPKD",
+    logo: "/logos/default.png",
+    url: "https://sipd.kemendagri.go.id/",
+    status: "active"
+  },
+  {
+    id: "046",
+    name: "LPSE Kabupaten Bekasi",
+    description: "Layanan Pengadaan Secara Elektronik untuk memfasilitasi ULP/Pejabat Pengadaan dalam pengadaan barang dan jasa pemerintah.",
+    category: "Administrasi Pemerintahan",
+    agency: "Bagian Pengadaan Barang dan Jasa",
+    logo: "/logos/default.png",
+    url: "https://lpse.bekasikab.go.id/",
+    status: "active"
+  },
+  {
+    id: "047",
+    name: "SiRUP",
+    description: "Sistem Informasi Rencana Umum Pengadaan untuk mengumumkan RUP secara transparan ke publik.",
+    category: "Administrasi Pemerintahan",
+    agency: "Bagian Pengadaan Barang dan Jasa",
+    logo: "/logos/default.png",
+    url: "https://sirup.lkpp.go.id/",
+    status: "active"
+  },
+  {
+    id: "048",
+    name: "E-Kinerja / SIKAP",
+    description: "Sistem Informasi Kinerja Aparatur untuk memantau, menilai, dan mengelola capaian kinerja ASN di lingkungan Pemkab Bekasi.",
+    category: "Administrasi Pemerintahan",
+    agency: "BKPSDM",
+    logo: "/logos/default.png",
+    url: "https://kinerja.bekasikab.go.id/",
+    status: "active"
+  },
+  {
+    id: "049",
+    name: "Simpeg",
+    description: "Sistem Informasi Manajemen Kepegawaian untuk pengelolaan data, riwayat, dan profil seluruh ASN daerah.",
+    category: "Administrasi Pemerintahan",
+    agency: "BKPSDM",
+    logo: "/logos/default.png",
+    url: "https://simpeg.bekasikab.go.id/",
+    status: "active"
+  },
+  {
+    id: "050",
+    name: "E-Office (TNDE)",
+    description: "Tata Naskah Dinas Elektronik untuk mempercepat alur surat menyurat dan disposisi internal antar OPD.",
+    category: "Administrasi Pemerintahan",
+    agency: "Diskominfosantik",
+    logo: "/logos/default.png",
+    url: "https://eoffice.bekasikab.go.id/",
+    status: "active"
   }
 ];
