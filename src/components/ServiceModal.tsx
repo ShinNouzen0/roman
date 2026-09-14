@@ -1,5 +1,5 @@
 import { DigitalService } from "@/types";
-import { X, ExternalLink, Building2, User, Folder, Calendar } from "lucide-react";
+import { X, ExternalLink, Building2, User, Folder, Calendar, Phone, Mail } from "lucide-react";
 import Badge from "./Badge";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -104,8 +104,28 @@ export default function ServiceModal({ service, isOpen, onClose }: ServiceModalP
                     <Calendar className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Terakhir Update</div>
-                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.lastUpdated || "-"}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Pembaruan Terakhir</div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.lastUpdated || "01 Jan 2024"}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <Mail className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Email Bantuan</div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactEmail || "helpdesk@bekasikab.go.id"}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <Phone className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">No. Telepon / WA</div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactPhone || "+62 813-1313-1967"}</div>
                   </div>
                 </div>
               </div>

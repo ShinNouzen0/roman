@@ -11,4 +11,6 @@ export interface DigitalService {
   status: "active" | "maintenance" | "inactive" | "development";
   users?: string;
   lastUpdated?: string;
+  contactEmail?: string;
+  contactPhone?: string;
 }

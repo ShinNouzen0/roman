@@ -77,9 +77,15 @@ export default function Home() {
   const serviceChunks = chunkArray(filteredServices, 8);
 
   // Filter for OPD Section
-  const opdServices = selectedOpd 
+  const featuredNames = ["Banpin", "SAPA 129", "Bebunge", "Bebeli", "CSIRT", "SP4N Lapor", "Geoportal", "SPLP", "MAIL BEKASIKAB"];
+  
+  let opdServices = selectedOpd 
     ? filteredByType.filter(s => s.agency === selectedOpd)
-    : filteredByType.slice(0, 8); // Just show top 8 if no OPD is selected
+    : filteredByType.filter(s => featuredNames.some(fn => s.name.toLowerCase().includes(fn.toLowerCase())));
+    
+  if (!selectedOpd && opdServices.length === 0) {
+    opdServices = filteredByType.slice(0, 8); // fallback
+  }
 
   // Animation variants
   const fadeInUp = {
