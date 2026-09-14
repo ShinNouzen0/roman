@@ -11,8 +11,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sipsat.badanpangan.go.id/admin/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "002",
@@ -24,8 +24,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://proyeksineracapangan.badanpangan.go.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "003",
@@ -37,8 +37,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://www.youtube.com/watch?v=a7IJ1FgfK54",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "004",
@@ -50,8 +50,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://skpg.badanpangan.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "005",
@@ -63,8 +63,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://kekerasan.kemenpppa.go.id/register/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "006",
@@ -76,8 +76,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://kla.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "007",
@@ -89,8 +89,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://mail.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "008",
@@ -102,8 +102,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://splp.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "009",
@@ -128,8 +128,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://simonas.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "011",
@@ -141,8 +141,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://gitlab.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "012",
@@ -154,8 +154,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://dashboard-jipd.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "013",
@@ -180,8 +180,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://gisfiberoptik.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "015",
@@ -193,8 +193,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://ekin-diskominfosantik.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "016",
@@ -206,8 +206,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://files.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "017",
@@ -219,8 +219,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://mail.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "018",
@@ -232,7 +232,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://spse.inaproc.id/bekasikab",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+62889378000"
   },
   {
@@ -245,8 +245,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sikaka2.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "020",
@@ -259,7 +259,7 @@ export const mockServices: DigitalService[] = [
     url: "https://lapor.go.id",
     status: "active",
     contactEmail: "lapor@layanan.go.id",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "021",
@@ -271,8 +271,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://tte.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "022",
@@ -284,8 +284,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://siren.rkbmd.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "023",
@@ -297,8 +297,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://atisisbada.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "024",
@@ -311,7 +311,7 @@ export const mockServices: DigitalService[] = [
     url: "https://persediaan.bekasikab.go.id",
     status: "active",
     contactEmail: "bmd.kabbekasi@gmail.com",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "025",
@@ -323,8 +323,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sipd.kemendagri.go.id/landing",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "026",
@@ -336,8 +336,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://perencanaan-siasn.bkn.go.id/pengelolaan/usulan-sotk",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "027",
@@ -349,8 +349,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://asndigital.bkn.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "028",
@@ -362,8 +362,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://bisma.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "029",
@@ -375,8 +375,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sikawanbaru.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "030",
@@ -388,8 +388,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://app.dapobud.kemenbud.go.id/pendataan/cagarbudaya",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "031",
@@ -401,8 +401,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://perbuddalamangka.jabarprov.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "032",
@@ -414,8 +414,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://belajar.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "033",
@@ -427,8 +427,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://gtk.belajar.kemendikdasmen.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "034",
@@ -440,8 +440,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://antun.gtk.kemdikbud.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "035",
@@ -453,8 +453,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://simtun.gtk.dikdasmen.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "036",
@@ -466,8 +466,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://surveilingkunganbelajar.kemdikbud.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "037",
@@ -479,8 +479,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://ijazah.data.kemendikdasmen.go.id/manajemen#/sign-in",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "038",
@@ -492,8 +492,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://markas.kemdikbud.go.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "039",
@@ -505,8 +505,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://smd.data.kemdikbud.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "040",
@@ -518,8 +518,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://lkpj-bekasi.simda.net/app/auth/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "041",
@@ -531,8 +531,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://devbekasi.com/elegan",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "042",
@@ -544,8 +544,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sigizikesga.kemkes.go.id/login_sisfo/index",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "043",
@@ -558,7 +558,7 @@ export const mockServices: DigitalService[] = [
     url: "https://rsudcabangbungin.e-blud.co.id/dashboard",
     status: "active",
     contactEmail: "ex@abc.xyz",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "044",
@@ -570,8 +570,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://akun-yankes.kemkes.go.id/beranda",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "045",
@@ -583,8 +583,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sihepi.kemkes.go.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "046",
@@ -596,8 +596,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sitb.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "047",
@@ -609,8 +609,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://vclaim.bpjs.-kesehatan.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "048",
@@ -622,8 +622,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sihapims2.kemkes.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "049",
@@ -635,8 +635,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://apotek-bpjs-kesehatan.go.id/apotek",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "050",
@@ -648,8 +648,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://monevkatalogobat.kemkes.go.id/#front/home",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "051",
@@ -661,8 +661,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sipnap.kemkes.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "052",
@@ -674,8 +674,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sisdmk.kemkes.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "053",
@@ -687,7 +687,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://ekin-rsudcabangbungin.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+6281313131967"
   },
   {
@@ -713,8 +713,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://srikandi.arsip.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "056",
@@ -726,7 +726,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://laporsapa129.kemenpppa.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+628111129129"
   },
   {
@@ -752,8 +752,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://geoportal.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "059",
@@ -778,8 +778,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sidamentel.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "061",
@@ -791,8 +791,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://kiosk-gpp.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "062",
@@ -804,8 +804,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://kiosk-gpp.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "063",
@@ -817,8 +817,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://ikm-mpp.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "064",
@@ -830,8 +830,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://ikm-mpp.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "065",
@@ -843,8 +843,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sirame.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "066",
@@ -856,8 +856,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://boss.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "067",
@@ -870,7 +870,7 @@ export const mockServices: DigitalService[] = [
     url: "https://pmd-dpmptsp.bekasikab.go.id/",
     status: "active",
     contactEmail: "dpmptsp@bekasikab.go.id",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "068",
@@ -882,7 +882,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://bebunge.bekasikab.go.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+6281313131967"
   },
   {
@@ -895,7 +895,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://bebeli.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+6281400612285"
   },
   {
@@ -908,8 +908,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://satupeta.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "071",
@@ -921,8 +921,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://satudata.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "072",
@@ -947,8 +947,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sitepak.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "074",
@@ -973,8 +973,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://pecakpkwt.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "076",
@@ -986,8 +986,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/layanan-pendaftaran-kartu-pencari-kerja",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "077",
@@ -999,7 +999,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://simpum.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+6289637977298"
   },
   {
@@ -1025,8 +1025,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://simpati.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "080",
@@ -1038,8 +1038,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://pencegahandamkar.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "081",
@@ -1051,8 +1051,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sipenak.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "082",
@@ -1064,8 +1064,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://spmb.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "083",
@@ -1077,8 +1077,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://raporpendidikan.kemendikdasmen.go.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "084",
@@ -1091,7 +1091,7 @@ export const mockServices: DigitalService[] = [
     url: "https://pip.kemendikdasmen.go.id/home_v1",
     status: "active",
     contactEmail: "pengaduan@kemendikdasmen.go.id",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "085",
@@ -1103,8 +1103,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://datadik.kemendikdasmen.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "086",
@@ -1117,7 +1117,7 @@ export const mockServices: DigitalService[] = [
     url: "https://getak-disdik.bekasikab.go.id",
     status: "active",
     contactEmail: "disdik@bekasikab.go.id",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "087",
@@ -1129,8 +1129,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/ekir",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "088",
@@ -1142,7 +1142,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://kapal.kkp.go.id/sipalkaonline/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
+    contactEmail: "-",
     contactPhone: "+628111350564"
   },
   {
@@ -1168,8 +1168,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://satudata.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "091",
@@ -1181,8 +1181,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://skp-pdspkp.kkp.go.id/skp-online/auth/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "092",
@@ -1195,7 +1195,7 @@ export const mockServices: DigitalService[] = [
     url: "https://sipkali.bekasikab.go.id/",
     status: "active",
     contactEmail: "bddykesling@bekasikab.go.id",
-    contactPhone: "Tidak ditemukan"
+    contactPhone: "-"
   },
   {
     id: "093",
@@ -1220,8 +1220,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://boss.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "095",
@@ -1233,8 +1233,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://siinas.kemenperin.go.id/pemda",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "096",
@@ -1246,8 +1246,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://sitangguh.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "097",
@@ -1259,8 +1259,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://hfis.bpjs-kesehatan.go.id/hfis/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "098",
@@ -1272,8 +1272,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simrs-khanza",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "099",
@@ -1285,8 +1285,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://perpustakaan.bekasikab.go.id/",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "100",
@@ -1298,8 +1298,8 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://inlislite.bekasikab.go.id",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   },
   {
     id: "101",
@@ -1311,7 +1311,7 @@ export const mockServices: DigitalService[] = [
     logo: "/logos/default.png",
     url: "https://web-ibekasikab.mocco.co.id/login",
     status: "active",
-    contactEmail: "Tidak ditemukan",
-    contactPhone: "Tidak ditemukan"
+    contactEmail: "-",
+    contactPhone: "-"
   }
 ];

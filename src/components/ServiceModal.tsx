@@ -115,7 +115,7 @@ export default function ServiceModal({ service, isOpen, onClose }: ServiceModalP
                   </div>
                   <div>
                     <div className="text-xs text-slate-500 dark:text-slate-400">Email Bantuan</div>
-                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactEmail || "helpdesk@bekasikab.go.id"}</div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactEmail && service.contactEmail !== "Tidak ditemukan" ? service.contactEmail : "-"}</div>
                   </div>
                 </div>
 
@@ -125,7 +125,7 @@ export default function ServiceModal({ service, isOpen, onClose }: ServiceModalP
                   </div>
                   <div>
                     <div className="text-xs text-slate-500 dark:text-slate-400">No. Telepon / WA</div>
-                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactPhone || "+62 813-1313-1967"}</div>
+                    <div className="text-sm font-medium text-slate-900 dark:text-white">{service.contactPhone && service.contactPhone !== "Tidak ditemukan" ? service.contactPhone : "-"}</div>
                   </div>
                 </div>
               </div>
