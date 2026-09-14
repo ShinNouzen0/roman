@@ -2,7 +2,8 @@ export interface DigitalService {
   id: string;
   name: string;
   description: string;
-  category: string;
+  serviceType: "Layanan Publik" | "Administrasi Pemerintahan"; // Main category
+  category: string; // Sub-category or Tag
   agency: string;
   manager?: string;
   logo: string;
