@@ -9,7 +9,7 @@ export const mockServices: DigitalService[] = [
     category: "Pangan & Pertanian",
     agency: "Dinas Ketahanan Pangan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sipsat-badan-pangan",
+    url: "https://sipsat.badanpangan.go.id/admin/login",
     status: "active"
   },
   {
@@ -20,7 +20,7 @@ export const mockServices: DigitalService[] = [
     category: "Pangan & Pertanian",
     agency: "Dinas Ketahanan Pangan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/proyeksi-neraca-pangan-badan-pangan",
+    url: "https://proyeksineracapangan.badanpangan.go.id/login",
     status: "active"
   },
   {
@@ -31,7 +31,7 @@ export const mockServices: DigitalService[] = [
     category: "Pangan & Pertanian",
     agency: "Dinas Ketahanan Pangan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/fsva-badan-pangan",
+    url: "https://www.youtube.com/watch?v=a7IJ1FgfK54",
     status: "active"
   },
   {
@@ -42,7 +42,7 @@ export const mockServices: DigitalService[] = [
     category: "Pangan & Pertanian",
     agency: "Dinas Ketahanan Pangan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/skpg-badan-pangan",
+    url: "https://skpg.badanpangan.go.id",
     status: "active"
   },
   {
@@ -53,7 +53,7 @@ export const mockServices: DigitalService[] = [
     category: "Sosial",
     agency: "DP3A",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simfoni-ppa",
+    url: "https://kekerasan.kemenpppa.go.id/register/login",
     status: "active"
   },
   {
@@ -64,7 +64,7 @@ export const mockServices: DigitalService[] = [
     category: "Sosial",
     agency: "DP3A",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/kabupaten-layak-anak-kla",
+    url: "https://kla.bekasikab.go.id",
     status: "active"
   },
   {
@@ -75,7 +75,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/mail-bekasikab",
+    url: "https://mail.bekasikab.go.id",
     status: "active"
   },
   {
@@ -86,7 +86,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/splp",
+    url: "https://splp.bekasikab.go.id",
     status: "active"
   },
   {
@@ -97,7 +97,7 @@ export const mockServices: DigitalService[] = [
     category: "Infrastruktur & TIK",
     agency: "Diskominfosantik",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/baba",
+    url: "https://baba.bekasikab.go.id",
     status: "active"
   },
   {
@@ -108,7 +108,7 @@ export const mockServices: DigitalService[] = [
     category: "Infrastruktur & TIK",
     agency: "Diskominfosantik",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simonas",
+    url: "https://simonas.bekasikab.go.id",
     status: "active"
   },
   {
@@ -119,7 +119,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/gitlab",
+    url: "https://gitlab.bekasikab.go.id",
     status: "active"
   },
   {
@@ -130,7 +130,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/monitoring-jipd",
+    url: "https://dashboard-jipd.bekasikab.go.id",
     status: "active"
   },
   {
@@ -141,7 +141,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/ami",
+    url: "https://ami.bekasikab.go.id",
     status: "active"
   },
   {
@@ -152,7 +152,7 @@ export const mockServices: DigitalService[] = [
     category: "Infrastruktur & TIK",
     agency: "Diskominfosantik",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/gis-fiberoptik",
+    url: "https://gisfiberoptik.bekasikab.go.id",
     status: "active"
   },
   {
@@ -163,7 +163,7 @@ export const mockServices: DigitalService[] = [
     category: "Infrastruktur & TIK",
     agency: "Diskominfosantik",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/ekin-3",
+    url: "https://ekin-diskominfosantik.bekasikab.go.id",
     status: "active"
   },
   {
@@ -174,7 +174,7 @@ export const mockServices: DigitalService[] = [
     category: "Infrastruktur & TIK",
     agency: "Diskominfosantik",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/bekasikab-cloud",
+    url: "https://files.bekasikab.go.id",
     status: "active"
   },
   {
@@ -185,7 +185,7 @@ export const mockServices: DigitalService[] = [
     category: "Perizinan",
     agency: "DPMPTSP",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/mail-boss",
+    url: "https://mail.bekasikab.go.id",
     status: "active"
   },
   {
@@ -196,7 +196,7 @@ export const mockServices: DigitalService[] = [
     category: "Pengadaan",
     agency: "Bagian PBJ",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/spse",
+    url: "https://spse.inaproc.id/bekasikab",
     status: "active"
   },
   {
@@ -207,7 +207,7 @@ export const mockServices: DigitalService[] = [
     category: "Kepegawaian",
     agency: "BKPSDM",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sikaka",
+    url: "https://sikaka2.bekasikab.go.id",
     status: "active"
   },
   {
@@ -218,7 +218,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sp4n-lapor",
+    url: "https://lapor.go.id",
     status: "active"
   },
   {
@@ -229,7 +229,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/satte",
+    url: "https://tte.bekasikab.go.id",
     status: "active"
   },
   {
@@ -240,7 +240,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/siren",
+    url: "https://siren.rkbmd.id",
     status: "active"
   },
   {
@@ -251,7 +251,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/atisisbada",
+    url: "https://atisisbada.bekasikab.go.id",
     status: "active"
   },
   {
@@ -262,7 +262,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simbape",
+    url: "https://persediaan.bekasikab.go.id",
     status: "active"
   },
   {
@@ -273,7 +273,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sipd",
+    url: "https://sipd.kemendagri.go.id/landing",
     status: "active"
   },
   {
@@ -284,7 +284,7 @@ export const mockServices: DigitalService[] = [
     category: "Kepegawaian",
     agency: "BKPSDM",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sistem-informasi-aparatur-sipil-negara-siasn",
+    url: "https://perencanaan-siasn.bkn.go.id/pengelolaan/usulan-sotk",
     status: "active"
   },
   {
@@ -295,7 +295,7 @@ export const mockServices: DigitalService[] = [
     category: "Kepegawaian",
     agency: "BKPSDM",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/siasn",
+    url: "https://asndigital.bkn.go.id",
     status: "active"
   },
   {
@@ -306,7 +306,7 @@ export const mockServices: DigitalService[] = [
     category: "Kepegawaian",
     agency: "BKPSDM",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/bisma",
+    url: "https://bisma.bekasikab.go.id",
     status: "active"
   },
   {
@@ -317,7 +317,7 @@ export const mockServices: DigitalService[] = [
     category: "Kepegawaian",
     agency: "BKPSDM",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sikawan",
+    url: "https://sikawanbaru.bekasikab.go.id",
     status: "active"
   },
   {
@@ -328,7 +328,7 @@ export const mockServices: DigitalService[] = [
     category: "Kearsipan & Perpustakaan",
     agency: "Dinas Arsip dan Perpustakaan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/dapobud",
+    url: "https://app.dapobud.kemenbud.go.id/pendataan/cagarbudaya",
     status: "active"
   },
   {
@@ -339,7 +339,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/perbud-dalam-angka",
+    url: "https://perbuddalamangka.jabarprov.go.id",
     status: "active"
   },
   {
@@ -350,7 +350,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/akun-belajar-id",
+    url: "https://belajar.id",
     status: "active"
   },
   {
@@ -361,7 +361,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/portal-layanan-program-gtk-kemendikdasmen",
+    url: "https://gtk.belajar.kemendikdasmen.go.id",
     status: "active"
   },
   {
@@ -372,7 +372,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sim-antun-sistem-informasi-manajemen-aneka-tunjangan",
+    url: "https://antun.gtk.kemdikbud.go.id",
     status: "active"
   },
   {
@@ -383,7 +383,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simtun-gtk-sistem-informasi-manajemen-tunjangan-guru-dan-tenaga-kependidikan",
+    url: "https://simtun.gtk.dikdasmen.go.id",
     status: "active"
   },
   {
@@ -394,7 +394,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/dashboard-sulingjar-survei-lingkungan-belajar",
+    url: "https://surveilingkunganbelajar.kemdikbud.go.id",
     status: "active"
   },
   {
@@ -405,7 +405,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/dashboard-ijazah",
+    url: "https://ijazah.data.kemendikdasmen.go.id/manajemen#/sign-in",
     status: "active"
   },
   {
@@ -416,7 +416,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/arkas-bos-aplikasi-rencana-kegiatan-dan-anggaran-sekolah",
+    url: "https://markas.kemdikbud.go.id/login",
     status: "active"
   },
   {
@@ -427,7 +427,7 @@ export const mockServices: DigitalService[] = [
     category: "Pendidikan",
     agency: "Dinas Pendidikan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/pusdatin-kemdikbudristek",
+    url: "https://smd.data.kemdikbud.go.id",
     status: "active"
   },
   {
@@ -438,7 +438,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/simak",
+    url: "https://lkpj-bekasi.simda.net/app/auth/login",
     status: "active"
   },
   {
@@ -449,7 +449,7 @@ export const mockServices: DigitalService[] = [
     category: "Kearsipan & Perpustakaan",
     agency: "Dinas Arsip dan Perpustakaan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/aplikasi-elegan-elektronik-logistik-dan-peralatan",
+    url: "https://devbekasi.com/elegan",
     status: "active"
   },
   {
@@ -460,7 +460,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/pelita-kesmas",
+    url: "https://sigizikesga.kemkes.go.id/login_sisfo/index",
     status: "active"
   },
   {
@@ -471,7 +471,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/eblud",
+    url: "https://rsudcabangbungin.e-blud.co.id/dashboard",
     status: "active"
   },
   {
@@ -482,7 +482,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/rs-online-amp-sirs-online",
+    url: "https://akun-yankes.kemkes.go.id/beranda",
     status: "active"
   },
   {
@@ -493,7 +493,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sihepi",
+    url: "https://sihepi.kemkes.go.id/login",
     status: "active"
   },
   {
@@ -504,7 +504,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sitb",
+    url: "https://sitb.id",
     status: "active"
   },
   {
@@ -515,7 +515,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/vclaim-bpjs",
+    url: "https://vclaim.bpjs.-kesehatan.go.id",
     status: "active"
   },
   {
@@ -526,7 +526,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/siha",
+    url: "https://sihapims2.kemkes.go.id",
     status: "active"
   },
   {
@@ -537,7 +537,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/apotek-bpjs",
+    url: "https://apotek-bpjs-kesehatan.go.id/apotek",
     status: "active"
   },
   {
@@ -548,7 +548,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/e-monev-obat",
+    url: "https://monevkatalogobat.kemkes.go.id/#front/home",
     status: "active"
   },
   {
@@ -559,7 +559,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sipnap",
+    url: "https://sipnap.kemkes.go.id",
     status: "active"
   },
   {
@@ -570,7 +570,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sisdmk",
+    url: "https://sisdmk.kemkes.go.id",
     status: "active"
   },
   {
@@ -581,7 +581,7 @@ export const mockServices: DigitalService[] = [
     category: "Kesehatan",
     agency: "Dinas Kesehatan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/ekin",
+    url: "https://ekin-rsudcabangbungin.bekasikab.go.id",
     status: "active"
   },
   {
@@ -592,7 +592,7 @@ export const mockServices: DigitalService[] = [
     category: "Kearsipan & Perpustakaan",
     agency: "Dinas Arsip dan Perpustakaan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/silat",
+    url: "https://silat.bekasikab.go.id",
     status: "active"
   },
   {
@@ -603,7 +603,7 @@ export const mockServices: DigitalService[] = [
     category: "Kearsipan & Perpustakaan",
     agency: "Dinas Arsip dan Perpustakaan",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/srikandi",
+    url: "https://srikandi.arsip.go.id",
     status: "active"
   },
   {
@@ -823,7 +823,7 @@ export const mockServices: DigitalService[] = [
     category: "Ketenagakerjaan",
     agency: "Disnaker",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/sistem-pencatatan-kontrak-perjanjian-kerja-waktu-tertentu-pkwt",
+    url: "https://pecakpkwt.bekasikab.go.id",
     status: "active"
   },
   {
@@ -867,7 +867,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/aplikasi-panic-button",
+    url: "https://simpati.bekasikab.go.id",
     status: "active"
   },
   {
@@ -878,7 +878,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/aplikasi-pemeriksaan-dan-penilaian-alat-pemadam-kebakaran",
+    url: "https://pencegahandamkar.bekasikab.go.id",
     status: "active"
   },
   {
@@ -900,7 +900,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/spmb-sistem-penerimaan-murid-baru-ppdb-penerimaan-peserta-didik-baru-online",
+    url: "https://spmb.bekasikab.go.id",
     status: "active"
   },
   {
@@ -999,7 +999,7 @@ export const mockServices: DigitalService[] = [
     category: "Layanan Umum",
     agency: "Pemkab Bekasi",
     logo: "/logos/default.png",
-    url: "https://pemdigi.bekasikab.go.id/katalog-layanan-link/skp-online",
+    url: "https://skp-pdspkp.kkp.go.id/skp-online/auth/login",
     status: "active"
   },
   {
