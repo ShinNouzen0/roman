@@ -9,7 +9,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service, onClick }: ServiceCardProps) {
   return (
-    <div className="group relative flex flex-col justify-between bg-white dark:bg-slate-800/80 rounded-[24px] border border-slate-200/80 dark:border-slate-700/80 p-6 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden backdrop-blur-sm">
+    <div className="h-full group relative flex flex-col justify-between bg-white dark:bg-slate-800/80 rounded-[24px] border border-slate-200/80 dark:border-slate-700/80 p-6 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden backdrop-blur-sm">
       
       {/* Decorative gradient blob */}
       <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>

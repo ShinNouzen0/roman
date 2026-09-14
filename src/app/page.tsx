@@ -52,7 +52,7 @@ export default function Home() {
 
   const filteredByType = activeType === "Semua" ? services : services.filter(s => s.serviceType === activeType);
   const categories = ["Semua", ...Array.from(new Set(filteredByType.map(s => s.category)))].sort();
-  const agencies = Array.from(new Set(services.map(s => s.agency))).sort();
+  const agencies = Array.from(new Set(filteredByType.map(s => s.agency))).sort();
 
   // Filter for Main Services Section
   const filteredServices = services.filter((service) => {
@@ -78,8 +78,8 @@ export default function Home() {
 
   // Filter for OPD Section
   const opdServices = selectedOpd 
-    ? services.filter(s => s.agency === selectedOpd)
-    : services.slice(0, 8); // Just show top 8 if no OPD is selected
+    ? filteredByType.filter(s => s.agency === selectedOpd)
+    : filteredByType.slice(0, 8); // Just show top 8 if no OPD is selected
 
   // Animation variants
   const fadeInUp = {
@@ -260,7 +260,7 @@ export default function Home() {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
               >
                 {serviceChunks[currentPage - 1]?.map((service) => (
-                  <div key={service.id}>
+                  <div key={service.id} className="h-full">
                     <ServiceCard 
                       service={service} 
                       onClick={(s) => setSelectedService(s)} 
@@ -356,7 +356,7 @@ export default function Home() {
                     Sorotan Utama
                   </button>
                   {agencies.map(agency => {
-                    const count = services.filter(s => s.agency === agency).length;
+                    const count = filteredByType.filter(s => s.agency === agency).length;
                     return (
                       <button
                         key={agency}
