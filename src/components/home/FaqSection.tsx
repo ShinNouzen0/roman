@@ -172,58 +172,72 @@ export default function FaqSection() {
 
         {/* FAQ Accordion */}
         <div className="space-y-3 mb-14">
-          {filteredFaqs.length > 0 ? (
-            filteredFaqs.map((faq, index) => (
-              <div 
-                key={index}
-                className={clsx(
-                  "bg-white dark:bg-slate-800 rounded-xl border transition-all duration-200",
-                  openIndex === index 
-                    ? "border-blue-300 dark:border-blue-500/40 shadow-sm" 
-                    : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600"
-                )}
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full flex items-center justify-between p-4 md:p-5 text-left"
-                >
-                  <span className="font-medium text-slate-800 dark:text-slate-100 pr-4">
-                    {faq.question}
-                  </span>
-                  <ChevronDown 
-                    className={clsx(
-                      "w-5 h-5 transition-transform duration-300 shrink-0",
-                      openIndex === index 
-                        ? "rotate-180 text-blue-600 dark:text-blue-400" 
-                        : "text-slate-400"
-                    )}
-                  />
-                </button>
-                
-                <AnimatePresence initial={false}>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-4 md:px-5 pb-4 md:pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filteredFaqs.length > 0 ? (
+              filteredFaqs.map((faq, index) => (
+                <motion.div
+                  key={faq.question}
+                  layout
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.15 } }}
+                  transition={{ delay: index * 0.05, duration: 0.25, ease: "easeOut" }}
+                  className={clsx(
+                    "bg-white dark:bg-slate-800 rounded-xl border transition-colors duration-200",
+                    openIndex === index
+                      ? "border-blue-300 dark:border-blue-500/40 shadow-sm"
+                      : "border-slate-200 dark:border-slate-700 hover:border-blue-200 dark:hover:border-slate-600"
                   )}
-                </AnimatePresence>
-              </div>
-            ))
-          ) : (
-            <div className="text-center py-12 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
-              <Search className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-500 dark:text-slate-400 font-medium">Tidak ada pertanyaan ditemukan</p>
-              <p className="text-sm text-slate-400 dark:text-slate-500 mt-1">Coba ubah kata kunci atau kategori pencarian Anda.</p>
-            </div>
-          )}
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between p-4 md:p-5 text-left group/btn"
+                  >
+                    <span className="font-medium text-slate-800 dark:text-slate-100 pr-4 group-hover/btn:text-blue-600 dark:group-hover/btn:text-blue-400 transition-colors duration-200">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: openIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className={clsx(
+                        "shrink-0 transition-colors duration-200",
+                        openIndex === index ? "text-blue-600 dark:text-blue-400" : "text-slate-400"
+                      )}
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-4 md:px-5 pb-4 md:pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700"
+              >
+                <Search className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+                <p className="text-slate-500 dark:text-slate-400 font-medium">Tidak ada pertanyaan ditemukan</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500 mt-1">Coba ubah kata kunci atau kategori pencarian Anda.</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Contact Card */}

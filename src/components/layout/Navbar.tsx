@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, Menu, X, Moon, Sun, LayoutDashboard } from "lucide-react";
@@ -9,17 +9,28 @@ import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 10);
+      // Hide when scrolling DOWN past 80px, show when scrolling UP
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setIsHidden(true);
+        setMobileMenuOpen(false); // auto-close mobile menu on hide
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = currentY;
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -27,32 +38,33 @@ export default function Navbar() {
     { name: "Beranda", path: "/#beranda" },
     { name: "Layanan", path: "/#layanan" },
     { name: "Perangkat Daerah", path: "/#perangkat-daerah" },
-    { name: "Tentang", path: "/#tentang" },
+    { name: "Indeks SPBE", path: "/#spbe-history" },
     { name: "Bantuan & FAQ", path: "/#faq" },
   ];
 
   return (
-    <header 
+    <header
       className={clsx(
         "fixed top-0 inset-x-0 z-40 transition-all duration-300 border-b",
-        isScrolled 
-          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm" 
-          : "bg-white dark:bg-slate-900 border-transparent"
+        isScrolled
+          ? "bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-md border-slate-200 dark:border-slate-800 shadow-sm"
+          : "bg-transparent border-transparent",
+        isHidden ? "-translate-y-full" : "translate-y-0"
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
           <Link href="/#beranda" className="flex items-center gap-3 bg-transparent dark:bg-slate-800/50 p-1.5 md:p-2 rounded-xl transition-colors">
-            <img 
-              src="/logos/logo-pemda.png" 
-              alt="Logo Pemerintah Kabupaten Bekasi" 
+            <img
+              src="/logos/logo-pemda.png"
+              alt="Logo Pemerintah Kabupaten Bekasi"
               className="h-8 md:h-10 w-auto object-contain rounded-md"
             />
             <div className="h-6 w-px bg-slate-300 dark:bg-slate-600 hidden sm:block"></div>
-            <img 
-              src="/logos/logo-spbe.png" 
-              alt="Logo SPBE Kabupaten Bekasi" 
+            <img
+              src="/logos/logo-spbe.png"
+              alt="Logo SPBE Kabupaten Bekasi"
               className="h-7 md:h-9 w-auto object-contain dark:drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]"
             />
           </Link>
@@ -65,8 +77,8 @@ export default function Navbar() {
                 href={link.path}
                 className={clsx(
                   "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                  pathname === link.path 
-                    ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30" 
+                  pathname === link.path
+                    ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
                     : "text-slate-600 hover:text-blue-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800"
                 )}
               >
@@ -80,11 +92,11 @@ export default function Navbar() {
             {/* Dark Mode Toggle */}
             {mounted && (
               <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
                 aria-label="Toggle Dark Mode"
               >
-                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             )}
 
@@ -110,8 +122,8 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={clsx(
                   "block px-3 py-3 rounded-lg text-base font-medium",
-                  pathname === link.path 
-                    ? "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/30" 
+                  pathname === link.path
+                    ? "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/30"
                     : "text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800"
                 )}
               >
