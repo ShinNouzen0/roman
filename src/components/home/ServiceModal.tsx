@@ -18,7 +18,7 @@ const InfoRow = ({
 }: {
   icon: React.ElementType;
   label: string;
-  value: string;
+  value?: string | null;
   color?: "blue" | "indigo" | "violet" | "sky" | "slate";
 }) => {
   const colorMap = {
