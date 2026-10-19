@@ -1,3 +1,92 @@
+export const SPBE_ASPECTS = [
+  "Kebijakan Internal Tata Kelola SPBE",
+  "Perencanaan Strategis SPBE",
+  "Teknologi Informasi dan Komunikasi",
+  "Penyelenggaraan SPBE",
+  "Penerapan Manajemen SPBE",
+  "Audit TIK",
+  "Administrasi Pemerintahan Berbasis Elektronik",
+  "Layanan Publik Berbasis Elektronik"
+] as const;
+
+export const SPBE_DOMAINS = [
+  {
+    name: "Domain Kebijakan SPBE",
+    aspectIndices: [0]
+  },
+  {
+    name: "Domain Tata Kelola SPBE",
+    aspectIndices: [1, 2]
+  },
+  {
+    name: "Domain Manajemen SPBE",
+    aspectIndices: [3, 4, 5]
+  },
+  {
+    name: "Domain Layanan SPBE",
+    aspectIndices: [6, 7]
+  }
+] as const;
+
+export interface SpbeAnnualRecord {
+  tahun: number;
+  indeks: number;
+  predikat: string;
+  aspectScores: number[];
+  domainScores: { [domainName: string]: number };
+}
+
+export const spbeAnnualData: SpbeAnnualRecord[] = [
+  {
+    tahun: 2024,
+    indeks: 4.08,
+    predikat: "Sangat Baik",
+    aspectScores: [4.7, 3.0, 3.5, 4.5, 3.13, 3.0, 4.4, 4.83],
+    domainScores: {
+      "Domain Kebijakan SPBE": 4.70,
+      "Domain Tata Kelola SPBE": 3.50,
+      "Domain Manajemen SPBE": 3.09,
+      "Domain Layanan SPBE": 4.57
+    }
+  },
+  {
+    tahun: 2023,
+    indeks: 3.28,
+    predikat: "Baik",
+    aspectScores: [3.5, 2.5, 2.75, 3.0, 2.25, 2.33, 3.6, 4.33],
+    domainScores: {
+      "Domain Kebijakan SPBE": 3.50,
+      "Domain Tata Kelola SPBE": 2.70,
+      "Domain Manajemen SPBE": 2.27,
+      "Domain Layanan SPBE": 3.89
+    }
+  },
+  {
+    tahun: 2022,
+    indeks: 1.71,
+    predikat: "Kurang",
+    aspectScores: [1.2, 1.5, 1.25, 1.5, 1.13, 1.0, 2.2, 2.33],
+    domainScores: {
+      "Domain Kebijakan SPBE": 1.20,
+      "Domain Tata Kelola SPBE": 1.40,
+      "Domain Manajemen SPBE": 1.09,
+      "Domain Layanan SPBE": 2.25
+    }
+  },
+  {
+    tahun: 2021,
+    indeks: 1.60,
+    predikat: "Kurang",
+    aspectScores: [1.0, 1.25, 1.25, 1.0, 1.13, 1.0, 2.3, 2.0],
+    domainScores: {
+      "Domain Kebijakan SPBE": 1.00,
+      "Domain Tata Kelola SPBE": 1.20,
+      "Domain Manajemen SPBE": 1.09,
+      "Domain Layanan SPBE": 2.18
+    }
+  }
+];
+
 export const spbeHistory = [
   {
     "tahun": 2021,

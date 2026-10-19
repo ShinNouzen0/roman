@@ -52,10 +52,10 @@ export default function Navbar() {
         isHidden ? "-translate-y-full" : "translate-y-0"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-2 md:px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
-          <Link href="/#beranda" className="flex items-center gap-3 bg-transparent dark:bg-slate-800/50 p-1.5 md:p-2 rounded-xl transition-colors">
+          <Link href="/#beranda" className="flex items-center gap-3 bg-transparent dark:bg-slate-800/50 p-1 rounded-xl transition-colors -ml-1">
             <img
               src="/logos/logo-pemda.png"
               alt="Logo Pemerintah Kabupaten Bekasi"

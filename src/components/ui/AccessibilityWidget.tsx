@@ -45,7 +45,7 @@ export default function AccessibilityWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -53,7 +53,7 @@ export default function AccessibilityWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-16 left-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 w-64"
+            className="absolute bottom-14 left-0 sm:bottom-16 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-4 w-60 sm:w-64 max-w-[calc(100vw-2rem)]"
           >
             <div className="flex items-center justify-between mb-4 border-b border-slate-100 dark:border-slate-700 pb-2">
               <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
@@ -113,10 +113,10 @@ export default function AccessibilityWidget() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-xl shadow-blue-600/30 hover:scale-110 active:scale-95 transition-all"
+        className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-lg sm:shadow-xl shadow-blue-600/30 hover:scale-110 active:scale-95 transition-all"
         title="Menu Aksesibilitas"
       >
-        <Accessibility className="w-6 h-6" />
+        <Accessibility className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
     </div>
   );

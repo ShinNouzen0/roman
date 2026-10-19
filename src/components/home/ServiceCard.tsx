@@ -69,8 +69,8 @@ export default function ServiceCard({ service, onClick }: ServiceCardProps) {
         rel="noopener noreferrer"
         className="relative z-10 w-full flex items-center justify-center gap-1.5 sm:gap-2 bg-slate-50 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 text-blue-600 hover:text-white dark:bg-slate-700/50 dark:hover:bg-gradient-to-r dark:hover:from-blue-600 dark:hover:to-indigo-600 dark:text-blue-400 dark:hover:text-white py-2 sm:py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-blue-500/20"
       >
-        <span>Akses Layanan</span>
-        <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+        <span className="whitespace-nowrap">Akses Layanan</span>
+        <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
       </a>
     </motion.div>
   );

@@ -126,6 +126,46 @@ export default function Home() {
   };
   const serviceChunks = chunkArray(filteredServices, 8);
 
+  // Smooth scroll to catalog section on page navigation
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const catalogEl = document.getElementById("layanan");
+    if (catalogEl) {
+      catalogEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  // Generate responsive pagination pages with ellipsis
+  const getPaginationPages = (current: number, total: number, maxVisible: number = 7) => {
+    if (total <= maxVisible) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const pages: (number | "ellipsis-start" | "ellipsis-end")[] = [1];
+
+    if (maxVisible <= 5) {
+      // Mobile logic: always up to 5 items
+      if (current <= 3) {
+        pages.push(2, 3, "ellipsis-end", total);
+      } else if (current >= total - 2) {
+        pages.push("ellipsis-start", total - 2, total - 1, total);
+      } else {
+        pages.push("ellipsis-start", current, "ellipsis-end", total);
+      }
+    } else {
+      // Desktop logic: up to 7 items
+      if (current <= 4) {
+        pages.push(2, 3, 4, 5, "ellipsis-end", total);
+      } else if (current >= total - 3) {
+        pages.push("ellipsis-start", total - 4, total - 3, total - 2, total - 1, total);
+      } else {
+        pages.push("ellipsis-start", current - 1, current, current + 1, "ellipsis-end", total);
+      }
+    }
+
+    return pages;
+  };
+
   // Filter for OPD Section
   const featuredNames = ["Banpin", "SAPA 129", "Bebunge", "Bebeli", "CSIRT", "SP4N Lapor", "Geoportal", "SPLP", "MAIL BEKASIKAB"];
   
@@ -227,37 +267,37 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-4 mb-6 flex items-center justify-center min-h-[3rem] md:min-h-[4rem]"
+            className="mt-3 sm:mt-4 mb-4 sm:mb-6 flex items-center justify-center min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
           >
-            <span className="text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-[0.14em] md:tracking-[0.2em] text-slate-800 dark:text-white">
+            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-[0.08em] sm:tracking-[0.14em] md:tracking-[0.2em] text-slate-800 dark:text-white">
               {displayText}
             </span>
             {displayText.length < 16 && (
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.75, repeat: Infinity }}
-                className="ml-1 text-2xl md:text-4xl lg:text-5xl font-extrabold text-slate-400 dark:text-slate-500"
+                className="ml-1 text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-400 dark:text-slate-500"
               >
                 |
               </motion.span>
             )}
           </motion.div>
 
-          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+          <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 sm:mb-10 max-w-3xl mx-auto font-light leading-relaxed px-2">
             Akses seluruh layanan digital, aplikasi publik, dan sistem administrasi Kabupaten Bekasi dalam satu platform yang terintegrasi, transparan, dan responsif.
           </motion.p>
 
           {/* Search Box */}
           <motion.div variants={fadeInUp} className="max-w-2xl mx-auto relative group">
-            <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-              <Search className="h-6 w-6 text-slate-400 group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400 transition-colors" />
+            <div className="absolute inset-y-0 left-4 sm:left-6 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 sm:h-6 sm:w-6 text-slate-400 group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400 transition-colors" />
             </div>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari layanan, aplikasi, atau perangkat daerah..."
-              className="w-full pl-16 pr-6 py-5 rounded-full bg-white dark:bg-slate-800/80 backdrop-blur-md shadow-2xl shadow-blue-900/5 dark:shadow-none border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-base md:text-lg text-slate-900 dark:text-white transition-all placeholder:text-slate-400 hover:shadow-blue-900/10"
+              placeholder="Cari layanan, aplikasi, atau OPD..."
+              className="w-full pl-12 sm:pl-16 pr-4 sm:pr-6 py-3.5 sm:py-5 rounded-full bg-white dark:bg-slate-800/80 backdrop-blur-md shadow-2xl shadow-blue-900/5 dark:shadow-none border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm sm:text-base md:text-lg text-slate-900 dark:text-white transition-all placeholder:text-slate-400 hover:shadow-blue-900/10"
             />
           </motion.div>
         </motion.div>
@@ -443,40 +483,103 @@ export default function Home() {
 
             {/* Pagination Controls */}
             {serviceChunks.length > 1 && (
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-14">
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 disabled:opacity-40 disabled:hover:shadow-sm disabled:cursor-not-allowed text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-all group"
-                >
-                  <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                  Sebelumnya
-                </button>
-                
-                <div className="flex items-center gap-2">
-                  {serviceChunks.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentPage(idx + 1)}
-                      className={`w-10 h-10 rounded-full font-bold text-sm transition-all ${
-                        currentPage === idx + 1 
-                          ? "bg-blue-600 text-white shadow-md shadow-blue-500/30 scale-110" 
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-blue-100 dark:hover:bg-slate-700"
-                      }`}
-                    >
-                      {idx + 1}
-                    </button>
-                  ))}
+              <div className="mt-10 sm:mt-16 flex flex-col items-center gap-3 sm:gap-4">
+                <div className="w-full flex items-center justify-center gap-1.5 sm:gap-3 px-1">
+                  {/* Tombol Sebelumnya */}
+                  <button
+                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="flex items-center gap-1.5 p-2 sm:px-5 sm:py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 disabled:opacity-30 disabled:pointer-events-none text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold text-xs sm:text-sm transition-all shrink-0 active:scale-95 group"
+                    aria-label="Halaman Sebelumnya"
+                  >
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:-translate-x-0.5 transition-transform" />
+                    <span className="hidden sm:inline">Sebelumnya</span>
+                  </button>
+                  
+                  {/* Nomor Halaman - Mobile View (Maks 5 item, sangat pas di layar hp) */}
+                  <div className="flex sm:hidden items-center gap-1 overflow-x-auto hide-scrollbar max-w-full py-1">
+                    {getPaginationPages(currentPage, serviceChunks.length, 5).map((page, idx) => {
+                      if (typeof page === "string") {
+                        const isStart = page === "ellipsis-start";
+                        return (
+                          <button
+                            key={`${page}-${idx}`}
+                            onClick={() => handlePageChange(isStart ? Math.max(1, currentPage - 3) : Math.min(serviceChunks.length, currentPage + 3))}
+                            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
+                            title={isStart ? "Mundur 3 Halaman" : "Maju 3 Halaman"}
+                          >
+                            ...
+                          </button>
+                        );
+                      }
+                      const isCurrent = currentPage === page;
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`w-8 h-8 rounded-full font-bold text-xs transition-all flex items-center justify-center shrink-0 ${
+                            isCurrent
+                              ? "bg-blue-600 text-white shadow-md shadow-blue-500/30 scale-105"
+                              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Nomor Halaman - Desktop View (Maks 7 item) */}
+                  <div className="hidden sm:flex items-center gap-2">
+                    {getPaginationPages(currentPage, serviceChunks.length, 7).map((page, idx) => {
+                      if (typeof page === "string") {
+                        const isStart = page === "ellipsis-start";
+                        return (
+                          <button
+                            key={`${page}-${idx}`}
+                            onClick={() => handlePageChange(isStart ? Math.max(1, currentPage - 3) : Math.min(serviceChunks.length, currentPage + 3))}
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                            title={isStart ? "Mundur 3 Halaman" : "Maju 3 Halaman"}
+                          >
+                            ...
+                          </button>
+                        );
+                      }
+                      const isCurrent = currentPage === page;
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`w-10 h-10 rounded-full font-bold text-sm transition-all flex items-center justify-center ${
+                            isCurrent
+                              ? "bg-blue-600 text-white shadow-md shadow-blue-500/30 scale-110"
+                              : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-blue-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Tombol Selanjutnya */}
+                  <button
+                    onClick={() => handlePageChange(Math.min(serviceChunks.length, currentPage + 1))}
+                    disabled={currentPage === serviceChunks.length}
+                    className="flex items-center gap-1.5 p-2 sm:px-5 sm:py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 disabled:opacity-30 disabled:pointer-events-none text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold text-xs sm:text-sm transition-all shrink-0 active:scale-95 group"
+                    aria-label="Halaman Selanjutnya"
+                  >
+                    <span className="hidden sm:inline">Selanjutnya</span>
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(serviceChunks.length, p + 1))}
-                  disabled={currentPage === serviceChunks.length}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 disabled:opacity-40 disabled:hover:shadow-sm disabled:cursor-not-allowed text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-all group"
-                >
-                  Selanjutnya
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                {/* Indikator Halaman */}
+                <div className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-1">
+                  <span>Halaman <strong className="text-slate-800 dark:text-slate-200">{currentPage}</strong> dari <strong className="text-slate-800 dark:text-slate-200">{serviceChunks.length}</strong></span>
+                  <span>•</span>
+                  <span>Total {filteredServices.length} Layanan</span>
+                </div>
               </div>
             )}
           </div>

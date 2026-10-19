@@ -47,7 +47,7 @@ export default function CommandPalette({ services, onSelectService }: CommandPal
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 left-24 z-40 bg-blue-600 text-white p-3.5 rounded-full shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform flex items-center justify-center gap-2 group"
+        className="hidden sm:flex fixed bottom-6 left-24 z-40 bg-blue-600 text-white p-3.5 rounded-full shadow-lg shadow-blue-500/30 hover:scale-105 transition-transform items-center justify-center gap-2 group"
       >
         <Command className="w-5 h-5" />
         <span className="text-sm font-semibold hidden group-hover:inline-block pr-1 transition-all">Pencarian Cepat</span>
