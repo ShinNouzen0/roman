@@ -18,7 +18,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import clsx from "clsx";
-import { SPBE_ASPECTS, SPBE_DOMAINS, spbeAnnualData, SpbeAnnualRecord } from "@/data/spbeData";
+import { SPBE_ASPECTS, SPBE_DOMAINS, SpbeAnnualRecord } from "@/data/spbeData";
+import { useSpbeData, DEFAULT_SPBE_DATA } from "@/services/serviceStore";
 
 // ─── Helpers ───────────────────────────────────────────
 function getPredikatMeta(score: number) {
@@ -189,11 +190,13 @@ function AspectDetailPanel({
   aspectIndex,
   activeData,
   prevData,
+  allAnnualData,
   onClose,
 }: {
   aspectIndex: number;
   activeData: SpbeAnnualRecord;
   prevData: SpbeAnnualRecord | undefined;
+  allAnnualData?: SpbeAnnualRecord[];
   onClose: () => void;
 }) {
   const name = SPBE_ASPECTS[aspectIndex];
@@ -307,7 +310,7 @@ function AspectDetailPanel({
           Tren Tahunan
         </div>
         <div className="space-y-1.5">
-          {[...spbeAnnualData]
+          {[...(allAnnualData || DEFAULT_SPBE_DATA)]
             .sort((a, b) => a.tahun - b.tahun)
             .map((d) => {
               const s = d.aspectScores[aspectIndex] || 0;
@@ -353,16 +356,32 @@ function AspectDetailPanel({
 // ═══════════════════════════════════════════════════════
 export default function SpbeHistory() {
   const [mounted, setMounted] = useState(false);
-  const years = useMemo(() => spbeAnnualData.map((d) => d.tahun).sort((a, b) => b - a), []);
-  const [activeYear, setActiveYear] = useState<number>(years[0] || 2024);
+  const { spbeData } = useSpbeData();
+
+  const years = useMemo(
+    () => spbeData.map((d) => d.tahun).sort((a, b) => b - a),
+    [spbeData]
+  );
+  const [activeYear, setActiveYear] = useState<number>(() => years[0] || DEFAULT_SPBE_DATA[0]?.tahun || 2024);
+
+  // Sync activeYear if years change or current activeYear is deleted
+  useEffect(() => {
+    if (years.length > 0 && !years.includes(activeYear)) {
+      setActiveYear(years[0]);
+    }
+  }, [years, activeYear]);
 
   const activeData: SpbeAnnualRecord = useMemo(() => {
-    return spbeAnnualData.find((d) => d.tahun === activeYear) || spbeAnnualData[0];
-  }, [activeYear]);
+    return (
+      spbeData.find((d) => d.tahun === activeYear) ||
+      spbeData[0] ||
+      DEFAULT_SPBE_DATA[0]
+    );
+  }, [spbeData, activeYear]);
 
   const prevYearData = useMemo(() => {
-    return spbeAnnualData.find((d) => d.tahun === activeYear - 1);
-  }, [activeYear]);
+    return spbeData.find((d) => d.tahun === activeYear - 1);
+  }, [spbeData, activeYear]);
 
   // Animated values
   const [displayScore, setDisplayScore] = useState<number>(activeData.indeks);
@@ -459,18 +478,19 @@ export default function SpbeHistory() {
 
   // Sparkline data
   const chronologicalData = useMemo(() => {
-    return [...spbeAnnualData].sort((a, b) => a.tahun - b.tahun);
-  }, []);
+    return [...spbeData].sort((a, b) => a.tahun - b.tahun);
+  }, [spbeData]);
 
   const sparklineData = useMemo(() => {
-    const xs = [35, 115, 195, 275];
     const pts = chronologicalData.map((d, i) => {
+      const step = chronologicalData.length > 1 ? (275 - 35) / (chronologicalData.length - 1) : 0;
+      const x = Math.round(35 + i * step);
       const clamped = Math.max(1.0, Math.min(d.indeks, 5.0));
       const y = Math.round(92 - ((clamped - 1.0) / 4.0) * 54);
-      return { x: xs[i] || 35 + i * 80, y, tahun: d.tahun, indeks: d.indeks };
+      return { x, y, tahun: d.tahun, indeks: d.indeks };
     });
     const polyline = pts.map((p) => `${p.x},${p.y}`).join(" ");
-    const area = `${pts[0]?.x || 35},100 ` + polyline + ` ${pts[pts.length - 1]?.x || 275},100`;
+    const area = pts.length > 0 ? `${pts[0].x},100 ` + polyline + ` ${pts[pts.length - 1].x},100` : "";
     return { pts, polyline, area };
   }, [chronologicalData]);
 
@@ -1013,6 +1033,7 @@ export default function SpbeHistory() {
                       aspectIndex={selectedAspect}
                       activeData={activeData}
                       prevData={prevYearData}
+                      allAnnualData={spbeData}
                       onClose={() => setSelectedAspect(null)}
                     />
                   </motion.div>

@@ -1,27 +1,44 @@
 import { DigitalService } from "@/types";
-import { mockServices } from "@/data/mockData";
+import { getStoredServices } from "@/services/serviceStore";
 
 /**
- * Service to fetch digital services.
- * Currently uses mock data, but structured to easily switch to a real API fetch.
+ * Service to fetch digital services from database with graceful fallback to store.
+ * Synchronized with Supabase / Admin updates in real-time.
  */
 export async function getDigitalServices(): Promise<DigitalService[]> {
-  // Simulate network delay for realistic loading states
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockServices);
-    }, 500); // 500ms delay
-  });
+  try {
+    if (typeof window !== "undefined") {
+      const res = await fetch("/api/services", { cache: "no-store" });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          return json.data;
+        }
+      }
+    }
+  } catch {
+    // fallback to local stored services
+  }
+  return getStoredServices();
 }
 
 /**
- * Optional: Function to fetch a single service by ID
+ * Function to fetch a single service by ID
  */
 export async function getDigitalServiceById(id: string): Promise<DigitalService | undefined> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const service = mockServices.find(s => s.id === id);
-      resolve(service);
-    }, 300);
-  });
+  try {
+    if (typeof window !== "undefined") {
+      const res = await fetch(`/api/services/${id}`, { cache: "no-store" });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          return json.data;
+        }
+      }
+    }
+  } catch {
+    // fallback to local stored services
+  }
+  const services = getStoredServices();
+  return services.find((s) => s.id === id);
 }

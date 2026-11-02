@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { LayoutDashboard, Mail, Phone, MapPin } from "lucide-react";
+import { useSettings } from "@/services/serviceStore";
 
 export default function Footer() {
+  const { settings } = useSettings();
+
   return (
     <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
@@ -21,7 +26,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-500 dark:text-slate-400 max-w-sm mb-6 leading-relaxed">
-              Sistem Pemerintahan Berbasis Elektronik (SPBE) untuk akses terpadu berbagai layanan digital Kabupaten Bekasi.
+              {settings.portalDescription || "Sistem Pemerintahan Berbasis Elektronik (SPBE) untuk akses terpadu berbagai layanan digital Kabupaten Bekasi."}
             </p>
           </div>
 
@@ -37,7 +42,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Kontak</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Kontak & Bantuan</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-slate-500 dark:text-slate-400">
                 <MapPin className="w-5 h-5 shrink-0 text-slate-400" />
@@ -45,11 +50,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
                 <Phone className="w-5 h-5 shrink-0 text-slate-400" />
-                <span className="text-sm">(021) 89970696</span>
+                <span className="text-sm">{settings.contactPhone || "(021) 89970123"}</span>
               </li>
               <li className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
                 <Mail className="w-5 h-5 shrink-0 text-slate-400" />
-                <span className="text-sm">diskominfo@bekasikab.go.id</span>
+                <span className="text-sm">{settings.contactEmail || "spbe@bekasikab.go.id"}</span>
               </li>
             </ul>
           </div>

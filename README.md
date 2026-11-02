@@ -1,72 +1,140 @@
-# Portal Layanan Digital Pemerintah Kabupaten Bekasi
+# Portal Layanan Digital dan Dasbor Tata Kelola SPBE Kabupaten Bekasi
 
-Website ini berfungsi sebagai portal akses terpadu untuk berbagai aplikasi dan layanan digital yang dimiliki oleh Pemerintah Kabupaten Bekasi. Aplikasi ini dibangun sebagai prototype (rancangan awal) dengan menggunakan arsitektur modern yang memisahkan UI dan Data Layer sehingga siap untuk diintegrasikan dengan REST API di masa mendatang.
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase)
 
-## Teknologi yang Digunakan
-- **Framework**: [Next.js](https://nextjs.org/) (React.js) dengan App Router
-- **Bahasa**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Animasi & Interaksi**: [Framer Motion](https://www.framer.com/motion/)
+Platform terpadu Sistem Pemerintahan Berbasis Elektronik (SPBE) Pemerintah Kabupaten Bekasi yang mengintegrasikan seluruh katalog layanan digital publik, administrasi pemerintahan daerah, dan dasbor tata kelola berbasis peran (*Role-Based Access Control* / RBAC).
 
-## Struktur Utama Folder
+---
+
+## 📌 Deskripsi Proyek
+
+Aplikasi ini dirancang sebagai solusi satu pintu (*single point of access*) bagi masyarakat Kabupaten Bekasi dan aparatur pemerintah daerah:
+
+1. **Portal Publik (*Citizen & Business Facing*)**:
+   * Akses terpadu ke **101+ layanan digital** dari seluruh instansi/Perangkat Daerah (OPD).
+   * Pencarian cerdas instan (*Smart Search & Command Palette* `Ctrl + K`).
+   * Filter klasifikasi layanan: Layanan Publik (G2C), Bisnis (G2B), Tata Kelola Antar Instansi (G2G), dan Kepegawaian (G2E).
+   * Visualisasi riwayat capaian indeks evaluasi SPBE tahunan (2021–2024).
+   * Pusat bantuan, FAQ interaktif, widget aksesibilitas (kontras tinggi, pembesar teks), dan dukungan *Dark/Light Mode*.
+
+2. **Dasbor Tata Kelola Admin (*RBAC-Protected Administration Panel*)**:
+   * **Super Admin (Diskominfosantik)**: Kontrol penuh manajemen 101 layanan, status operasional (Aktif, Maintenance, Pengembangan), manajemen 22 OPD, data SPBE, FAQ, audit log aktivitas, dan pengelolaan akun admin instansi.
+   * **Admin OPD (Perangkat Daerah)**: Panel mandiri bagi setiap dinas/instansi untuk mengelola dan memantau status aplikasi sektoral masing-masing.
+   * Keamanan tingkat tinggi: Autentikasi server-side berbasis JWT bertanda tangan kriptografis Web Crypto API (HMAC-SHA256) dengan `HttpOnly` cookie dan proteksi Edge Middleware.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend Framework**: [Next.js 14](https://nextjs.org/) (App Router & Server Components)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Styling & UI**: [Tailwind CSS](https://tailwindcss.com/), [Lucide React Icons](https://lucide.dev/), [Framer Motion](https://www.framer.com/motion/)
+* **Database & Auth**: [Supabase](https://supabase.com/) (PostgreSQL Cloud)
+* **Object-Relational Mapping (ORM)**: [Prisma ORM](https://www.prisma.io/)
+* **Charts & Analytics**: [Recharts](https://recharts.org/)
+
+---
+
+## 📂 Struktur Direktori Utama
+
 ```text
-/src
- ├── /app                  # Next.js App Router (Halaman Utama)
- │    ├── page.tsx         # Halaman Beranda (Daftar Layanan, Pencarian, Filter)
- │    ├── layout.tsx       # Root layout (Navbar & Footer)
- │    ├── globals.css      # Styling global dan Tailwind base
- │    └── /perangkat-daerah
- │         └── page.tsx    # Halaman daftar layanan berdasarkan OPD
- ├── /components           # Komponen UI Reusable
- │    ├── Navbar.tsx       # Navigasi utama
- │    ├── Footer.tsx       # Footer portal
- │    ├── ServiceCard.tsx  # Card untuk menampilkan layanan
- │    ├── ServiceModal.tsx # Modal detail layanan
- │    └── Badge.tsx        # Indikator status layanan
- ├── /data                 # Mock Data sementara
- │    └── mockData.ts      # Data JSON 12+ aplikasi (Dummy)
- ├── /services             # Layer API (Terpisah dari UI komponen)
- │    └── api.ts           # Service untuk mengambil data (Get services)
- └── /types                # Definisi TypeScript Interfaces
-      └── index.ts         # Interface DigitalService dll.
+├── prisma/
+│   ├── schema.prisma       # Skema database relasional (Services, OPD, Users, FAQ, SPBE, Audit)
+│   └── seed.ts             # Script seeding otomatis 101 layanan, 22 OPD, admin & riwayat SPBE
+├── public/                 # Aset statis & logo instansi
+├── src/
+│   ├── app/
+│   │   ├── admin/          # Dasbor Manajemen SPBE (Services, OPD, FAQ, SPBE, Users, Logs)
+│   │   ├── api/            # Server API Routes (CRUD Services, OPD, Auth, FAQ, SPBE, Users)
+│   │   ├── globals.css     # Tailwind CSS base styles & token warna
+│   │   ├── layout.tsx      # Root layout & providers
+│   │   └── page.tsx        # Halaman portal beranda publik
+│   ├── components/
+│   │   ├── admin/          # Komponen UI dasbor admin (Header, Sidebar, Modals, Forms)
+│   │   ├── home/           # Komponen beranda publik (ServiceCard, Filter, FAQ, SPBE History)
+│   │   ├── layout/         # Komponen layout (Navbar, Footer, MaintenanceBanner)
+│   │   └── ui/             # Komponen visual (Badge, Accessibility, AnimatedNumber)
+│   ├── data/
+│   │   ├── initialData.ts  # Data rujukan instansi OPD, FAQ default, dan konfigurasi sistem
+│   │   ├── mockData.ts     # Data awal 101 katalog aplikasi SPBE
+│   │   └── spbeData.ts     # Rincian dimensi, domain, dan skor evaluasi SPBE
+│   ├── lib/
+│   │   ├── auth.ts         # JWT cryptographic signing & verification (Web Crypto API)
+│   │   ├── prisma.ts       # Prisma Client singleton connection pool
+│   │   └── server/auth.ts  # Server-side credential validation & user directory
+│   ├── services/
+│   │   ├── api.ts          # Abstraksi data layer client-to-server
+│   │   └── serviceStore.ts # Centralized reactive store dengan sinkronisasi multi-tab & DB
+│   ├── types/              # Definisi interface TypeScript
+│   └── middleware.ts       # Proteksi route admin via Next.js Edge Middleware
+├── .env.example            # Template variabel lingkungan
+└── package.json            # Daftar dependensi & npm scripts
 ```
 
-## Arsitektur Data & Integrasi API
-Saat ini, aplikasi menggunakan data dummy/mock data (dapat dilihat di `src/data/mockData.ts`). Komponen UI tidak mengambil data secara langsung dari file data ini. Sebaliknya, komponen UI menggunakan service terpisah di `src/services/api.ts`.
+---
 
-Nantinya, apabila REST API dari Diskominfosantik sudah tersedia, Anda hanya perlu mengubah `src/services/api.ts` agar melakukan *fetch* ke URL API sebenarnya (misalnya `fetch("https://api.bekasikab.go.id/services")`). Tidak ada komponen UI yang perlu diubah.
+## 🚀 Panduan Instalasi Lokal
 
-## Fitur Utama Prototype
-1. **Search**: Mencari layanan berdasarkan nama, deskripsi, atau pengelola.
-2. **Filter Kategori**: Mengelompokkan aplikasi sesuai kategori tertentu (Administrasi, Kepegawaian, Pelayanan Publik, dll).
-3. **Filter Perangkat Daerah (OPD)**: Melihat layanan yang khusus dikelola oleh suatu instansi/dinas.
-4. **Modal Detail Layanan**: Menampilkan deskripsi lengkap suatu aplikasi sebelum diarahkan keluar.
-5. **External Redirect**: Mengarahkan pengguna (membuka tab baru) ke URL layanan aplikasi yang sebenarnya saat menekan tombol "Buka Aplikasi".
-6. **Dark Mode / Light Mode**: Mendukung preferensi mode terang maupun gelap.
-7. **Responsive Design**: Tampilan yang optimal untuk Desktop, Tablet, dan Mobile.
+Ikuti langkah-langkah di bawah ini untuk menjalankan proyek di komputer lokal:
 
-## Cara Menjalankan Project
-
-Ikuti langkah-langkah berikut untuk menjalankan prototype ini di komputer lokal Anda:
-
-### 1. Prasyarat
-Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) versi terbaru.
+### 1. Kloning Repositori & Masuk ke Folder Proyek
+```bash
+git clone https://github.com/username/portal-magang.git
+cd portal-magang
+```
 
 ### 2. Instalasi Dependensi
-Jalankan perintah ini di dalam folder utama project:
 ```bash
 npm install
 ```
 
-### 3. Menjalankan Development Server
+### 3. Konfigurasi Variabel Lingkungan (`.env`)
+Salin file `.env.example` menjadi `.env`:
+```bash
+cp .env.example .env
+```
+Isi konfigurasi sesuai kredensial Supabase dan rahasia token Anda:
+```env
+NEXT_PUBLIC_SUPABASE_URL="https://your-project-id.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-public-key"
+DATABASE_URL="postgresql://postgres.[project-ref]:[password]@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DIRECT_URL="postgresql://postgres.[project-ref]:[password]@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres"
+AUTH_SECRET="spbe_bekasikab_secure_secret_key_2026_jwt_token_987654321"
+```
+
+### 4. Sinkronisasi Skema Database & Seeding
+Sinkronkan struktur tabel ke PostgreSQL Supabase dan suntikkan 101 data layanan:
+```bash
+npx prisma db push
+npx prisma db seed
+```
+
+### 5. Jalankan Server Development
 ```bash
 npm run dev
 ```
+Buka browser dan akses:
+👉 **`http://localhost:3000`**
 
-### 4. Buka di Browser
-Akses URL berikut:
-```text
-http://localhost:3000
-```
-Untuk menghentikan server, tekan `Ctrl + C` di terminal.
+---
+
+## 🔐 Kredensial Dasbor Admin (Demo Mode)
+
+Untuk mengakses panel dasbor di `/admin/login`:
+
+* **Super Admin (Diskominfosantik)**:
+  * Username: `admin_kominfo` *(atau email: `admin@bekasikab.go.id`)*
+  * Password: `admin123`
+* **Admin OPD (Disdukcapil)**:
+  * Username: `admin_disdukcapil` *(atau email: `disdukcapil@bekasikab.go.id`)*
+  * Password: `admin123`
+
+---
+
+## 📄 Lisensi
+
+Dikembangkan sebagai bagian dari inisiatif digitalisasi dan penguatan tata kelola SPBE Pemerintah Kabupaten Bekasi.

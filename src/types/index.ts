@@ -13,4 +13,5 @@ export interface DigitalService {
   lastUpdated?: string;
   contactEmail?: string;
   contactPhone?: string;
+  isFeatured?: boolean;
 }

@@ -17,8 +17,9 @@ import {
   MessageCircle
 } from "lucide-react";
 import clsx from "clsx";
+import { useFaqs, useSettings } from "@/services/serviceStore";
 
-const faqCategories = [
+export const faqCategories = [
   { id: "semua", label: "Semua", icon: Layers },
   { id: "akun", label: "Akun & Akses", icon: UserCircle },
   { id: "layanan", label: "Layanan", icon: FileText },
@@ -27,50 +28,9 @@ const faqCategories = [
   { id: "lainnya", label: "Lainnya", icon: HelpCircle },
 ];
 
-const faqs = [
-  {
-    category: "akun",
-    question: "Apa itu Portal SPBE Kabupaten Bekasi?",
-    answer: "Portal SPBE (Sistem Pemerintahan Berbasis Elektronik) adalah gerbang utama yang mengintegrasikan seluruh aplikasi dan layanan digital dari berbagai instansi (OPD) di lingkup Pemerintah Kabupaten Bekasi. Warga dapat menemukan semua layanan dari satu tempat terpusat."
-  },
-  {
-    category: "akun",
-    question: "Apakah saya harus membuat akun untuk menggunakan layanan?",
-    answer: "Untuk mengakses informasi dasar, Anda tidak perlu membuat akun. Namun, untuk mengajukan permohonan spesifik atau menggunakan layanan administrasi (seperti Banpin, Pajak Daerah, dll), Anda mungkin diarahkan untuk masuk atau mendaftar di masing-masing aplikasi tersebut."
-  },
-  {
-    category: "pengaduan",
-    question: "Aplikasi apa yang harus saya gunakan untuk pengaduan?",
-    answer: "Untuk pengaduan, Anda dapat menggunakan aplikasi Bebunge (Bekasi Nyambung Bae) atau SP4N Lapor yang tersedia di portal ini. Layanan tersebut memfasilitasi komunikasi dua arah antara masyarakat dan pemerintah daerah."
-  },
-  {
-    category: "teknis",
-    question: "Bagaimana jika link layanan tidak bisa diakses atau error?",
-    answer: "Jika Anda menemukan link layanan yang rusak, sedang dalam perbaikan, atau mengalami kendala teknis, Anda dapat melaporkannya melalui kanal pengaduan resmi atau langsung menghubungi tim Diskominfosantik Kabupaten Bekasi."
-  },
-  {
-    category: "layanan",
-    question: "Ke mana saya bisa menghubungi jika masih mengalami kendala?",
-    answer: "Anda dapat menghubungi Call Center 112 (bebas pulsa) atau mengirim email ke helpdesk@bekasikab.go.id. Layanan helpdesk tersedia pada hari kerja Senin-Jumat pukul 08.00-16.00 WIB."
-  },
-  {
-    category: "layanan",
-    question: "Apakah layanan di portal ini dipungut biaya?",
-    answer: "Sebagian besar layanan administrasi dan publik yang disediakan oleh Pemerintah Kabupaten Bekasi bersifat gratis. Jika ada layanan yang memerlukan biaya (seperti retribusi atau pajak), hal itu akan dijelaskan secara transparan di dalam sistem layanan terkait."
-  },
-  {
-    category: "teknis",
-    question: "Bagaimana cara mengakses layanan digital dari perangkat seluler?",
-    answer: "Seluruh layanan di portal SPBE dapat diakses melalui browser di perangkat seluler (smartphone/tablet). Beberapa layanan juga menyediakan aplikasi mobile yang dapat diunduh melalui Google Play Store atau Apple App Store."
-  },
-  {
-    category: "lainnya",
-    question: "Apakah data pribadi saya aman di portal ini?",
-    answer: "Pemerintah Kabupaten Bekasi berkomitmen menjaga keamanan data pribadi pengguna sesuai dengan Undang-Undang Perlindungan Data Pribadi (UU PDP). Setiap layanan menerapkan enkripsi dan standar keamanan yang berlaku."
-  }
-];
-
 export default function FaqSection() {
+  const { faqs } = useFaqs();
+  const { settings } = useSettings();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [selectedCategory, setSelectedCategory] = useState("semua");
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,7 +39,9 @@ export default function FaqSection() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const filteredFaqs = faqs.filter((faq) => {
+  const activeFaqs = faqs.filter((f) => f.isActive !== false);
+
+  const filteredFaqs = activeFaqs.filter((faq) => {
     const matchesCategory = selectedCategory === "semua" || faq.category === selectedCategory;
     const matchesSearch = searchQuery === "" || 
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -251,7 +213,7 @@ export default function FaqSection() {
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a 
-              href="https://api.whatsapp.com/send/?phone=6281313131967&text=Helpdesk+TIK&type=phone_number&app_absent=0"
+              href={`https://api.whatsapp.com/send/?phone=${(settings.contactPhone || "6281313131967").replace(/[^0-9]/g, "")}&text=Helpdesk+TIK+SPBE&type=phone_number&app_absent=0`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/40 transition-colors group"
@@ -261,12 +223,12 @@ export default function FaqSection() {
               </div>
               <div>
                 <div className="font-semibold text-sm text-slate-900 dark:text-white">Hubungi Kami</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">via WhatsApp</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{settings.contactPhone || "via WhatsApp"}</div>
               </div>
             </a>
             
             <a 
-              href="mailto:spbe@bekasikab.go.id"
+              href={`mailto:${settings.contactEmail || "spbe@bekasikab.go.id"}`}
               className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/40 transition-colors group"
             >
               <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-600 transition-colors">
@@ -274,7 +236,7 @@ export default function FaqSection() {
               </div>
               <div>
                 <div className="font-semibold text-sm text-slate-900 dark:text-white">Kirim Email</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">spbe@bekasikab.go.id</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{settings.contactEmail || "spbe@bekasikab.go.id"}</div>
               </div>
             </a>
             

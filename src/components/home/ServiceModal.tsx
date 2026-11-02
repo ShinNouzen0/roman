@@ -1,3 +1,5 @@
+"use client";
+
 import { DigitalService } from "@/types";
 import { X, ExternalLink, Building2, User, Folder, Calendar, Phone, Mail, Globe } from "lucide-react";
 import Badge from "@/components/ui/Badge";

@@ -231,10 +231,11 @@ export default function CategoryFilter({
             const isSelected = selectedCategory === category;
             const count = categoryCounts[category];
             return (
-              <button
+              <motion.button
                 key={category}
                 data-category={category}
                 onClick={() => onSelectCategory(category)}
+                whileTap={{ scale: 0.95 }}
                 className={`flex-shrink-0 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap ${
                   isSelected
                     ? "bg-blue-600 text-white shadow-md shadow-blue-600/30 scale-105"
@@ -253,7 +254,7 @@ export default function CategoryFilter({
                     {count}
                   </span>
                 )}
-              </button>
+              </motion.button>
             );
           })}
         </div>

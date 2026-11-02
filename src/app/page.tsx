@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowRight, Building2, Layers, ChevronLeft, ChevronRight, Activity, Clock } from "lucide-react";
-import { getDigitalServices } from "@/services/api";
+import { Search, ArrowRight, Building2, Layers, ChevronLeft, ChevronRight, Activity, Clock, X, Sparkles } from "lucide-react";
+import { useServices, useSettings } from "@/services/serviceStore";
 import { DigitalService } from "@/types";
 import ServiceCard from "@/components/home/ServiceCard";
 import ServiceModal from "@/components/home/ServiceModal";
@@ -10,13 +10,23 @@ import FaqSection from "@/components/home/FaqSection";
 import SpbeHistory from "@/components/home/SpbeHistory";
 import CategoryFilter from "@/components/home/CategoryFilter";
 import CommandPalette from "@/components/home/CommandPalette";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import clsx from "clsx";
 
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
+import { useOpdList } from "@/services/serviceStore";
 export default function Home() {
-  const [services, setServices] = useState<DigitalService[]>([]);
-  const [loading, setLoading] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
+  const [isMounted, setIsMounted] = useState(false);
+  const { services, isLoading: servicesLoading } = useServices();
+  const { opdList } = useOpdList();
+  const { settings } = useSettings();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // States for main search & category
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,22 +77,6 @@ export default function Home() {
   useEffect(() => {
     setSelectedCategory("Semua");
   }, [activeType]);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const data = await getDigitalServices();
-        setServices(data);
-        setError(null);
-      } catch (err) {
-        console.error("Failed to load services:", err);
-        setError("Gagal memuat data layanan. Periksa koneksi Anda dan coba lagi.");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
 
   const filteredByType = activeType === "Semua" ? services : services.filter(s => s.serviceType === activeType);
   const uniqueCategories = Array.from(new Set(filteredByType.map(s => s.category))).sort();
@@ -166,12 +160,10 @@ export default function Home() {
     return pages;
   };
 
-  // Filter for OPD Section
-  const featuredNames = ["Banpin", "SAPA 129", "Bebunge", "Bebeli", "CSIRT", "SP4N Lapor", "Geoportal", "SPLP", "MAIL BEKASIKAB"];
-  
+  // Filter for OPD Section / Layanan Unggulan Daerah
   let opdServices = selectedOpd 
     ? filteredByType.filter(s => s.agency === selectedOpd)
-    : filteredByType.filter(s => featuredNames.some(fn => s.name.toLowerCase().includes(fn.toLowerCase())));
+    : filteredByType.filter(s => Boolean(s.isFeatured));
     
   if (!selectedOpd && opdServices.length === 0) {
     opdServices = filteredByType.slice(0, 8); // fallback
@@ -195,11 +187,27 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section id="beranda" className="relative pt-32 pb-20 px-4 flex items-center justify-center min-h-[80vh] bg-gradient-to-br from-slate-100 via-slate-50 to-blue-50/40 dark:from-[#0a0f1e] dark:via-slate-900 dark:to-[#0d1530] overflow-hidden">
-        {/* Parallax Background Blobs */}
-        <motion.div style={{ y: yBg }} className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-16 left-8 w-80 h-80 bg-blue-400/15 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-8 right-8 w-[420px] h-[420px] bg-indigo-400/15 dark:bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-700" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[700px] h-[360px] bg-blue-500/8 dark:bg-blue-500/18 rounded-full blur-[80px]" />
+        {/* Parallax & Harmonic Floating Background Blobs */}
+        <motion.div style={{ y: yBg }} className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <motion.div
+            animate={shouldReduceMotion ? {} : {
+              scale: [1, 1.15, 0.95, 1],
+              x: [0, 20, -15, 0],
+              y: [0, -20, 15, 0],
+            }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-16 left-8 w-80 sm:w-96 h-80 sm:h-96 bg-blue-400/20 dark:bg-blue-500/25 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={shouldReduceMotion ? {} : {
+              scale: [1, 0.9, 1.12, 1],
+              x: [0, -25, 20, 0],
+              y: [0, 20, -15, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-8 right-8 w-[380px] sm:w-[460px] h-[380px] sm:h-[460px] bg-indigo-400/20 dark:bg-indigo-500/25 rounded-full blur-3xl"
+          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[700px] h-[360px] bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-[90px]" />
         </motion.div>
         
         {/* Subtle dot grid overlay */}
@@ -215,7 +223,8 @@ export default function Home() {
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.span variants={fadeInUp} className="inline-block px-5 py-2 mb-6 text-xs md:text-sm font-bold text-blue-700 bg-blue-100/80 rounded-full dark:bg-blue-900/60 dark:text-blue-300 shadow-sm border border-blue-200 dark:border-blue-800 backdrop-blur-sm">
+          <motion.span variants={fadeInUp} className="inline-flex items-center gap-1.5 px-5 py-2 mb-6 text-xs md:text-sm font-bold text-blue-700 bg-blue-100/80 rounded-full dark:bg-blue-900/60 dark:text-blue-300 shadow-sm border border-blue-200 dark:border-blue-800 backdrop-blur-sm">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
             Selamat Datang di Portal Resmi
           </motion.span>
           <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-3">
@@ -269,27 +278,27 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-3 sm:mt-4 mb-4 sm:mb-6 flex items-center justify-center min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]"
           >
-            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-[0.08em] sm:tracking-[0.14em] md:tracking-[0.2em] text-slate-800 dark:text-white">
+            <span className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-wider sm:tracking-[0.14em] md:tracking-[0.2em] text-slate-800 dark:text-white" suppressHydrationWarning>
               {displayText}
             </span>
             {displayText.length < 16 && (
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.75, repeat: Infinity }}
-                className="ml-1 text-xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-400 dark:text-slate-500"
+                className="ml-1 text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold text-slate-400 dark:text-slate-500"
               >
                 |
               </motion.span>
             )}
           </motion.div>
 
-          <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 sm:mb-10 max-w-3xl mx-auto font-light leading-relaxed px-2">
-            Akses seluruh layanan digital, aplikasi publik, dan sistem administrasi Kabupaten Bekasi dalam satu platform yang terintegrasi, transparan, dan responsif.
+          <motion.p variants={fadeInUp} className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-300 mb-6 sm:mb-10 max-w-3xl mx-auto font-light leading-relaxed px-2" suppressHydrationWarning>
+            {(isMounted && settings.portalDescription) || "Akses seluruh layanan digital, aplikasi publik, dan sistem administrasi Kabupaten Bekasi dalam satu platform yang terintegrasi, transparan, dan responsif."}
           </motion.p>
 
-          {/* Search Box */}
+          {/* Search Box with Clear Button (Ctrl+K shortcut kept active in background) */}
           <motion.div variants={fadeInUp} className="max-w-2xl mx-auto relative group">
-            <div className="absolute inset-y-0 left-4 sm:left-6 flex items-center pointer-events-none">
+            <div className="absolute inset-y-0 left-3.5 sm:left-6 flex items-center pointer-events-none">
               <Search className="h-5 w-5 sm:h-6 sm:w-6 text-slate-400 group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400 transition-colors" />
             </div>
             <input
@@ -297,15 +306,25 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari layanan, aplikasi, atau OPD..."
-              className="w-full pl-12 sm:pl-16 pr-4 sm:pr-6 py-3.5 sm:py-5 rounded-full bg-white dark:bg-slate-800/80 backdrop-blur-md shadow-2xl shadow-blue-900/5 dark:shadow-none border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm sm:text-base md:text-lg text-slate-900 dark:text-white transition-all placeholder:text-slate-400 hover:shadow-blue-900/10"
+              className="w-full pl-11 sm:pl-16 pr-11 sm:pr-14 py-3.5 sm:py-5 rounded-2xl sm:rounded-full bg-white/95 dark:bg-slate-800/90 backdrop-blur-xl shadow-xl shadow-blue-900/5 dark:shadow-none border border-slate-200/80 dark:border-slate-700/80 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 text-sm sm:text-base md:text-lg text-slate-900 dark:text-white transition-all placeholder:text-slate-400 hover:shadow-blue-900/10"
             />
+            {/* Clear Button */}
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-3.5 sm:right-6 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                title="Hapus pencarian"
+              >
+                <X className="w-5 h-5 bg-slate-100 dark:bg-slate-700/80 rounded-full p-1 hover:scale-110 active:scale-90 transition-transform" />
+              </button>
+            )}
           </motion.div>
         </motion.div>
       </section>
 
       {/* Stats Section — Animated count-up + stagger cards */}
-      <section className="py-14 bg-white dark:bg-slate-800/40 border-y border-slate-100 dark:border-slate-800/50 relative z-20">
-        <div className="container mx-auto px-4">
+      <section className="py-10 sm:py-14 bg-white dark:bg-slate-800/40 border-y border-slate-100 dark:border-slate-800/50 relative z-20">
+        <div className="container mx-auto px-3 sm:px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -314,12 +333,12 @@ export default function Home() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
             }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 max-w-6xl mx-auto"
           >
             {([
-              { label: "Aplikasi Aktif",    value: services.length,  suffix: "+", display: null, Icon: Activity,  topBg: "from-blue-500 to-blue-600",   iconBg: "bg-blue-100 dark:bg-blue-500/10",   iconColor: "text-blue-600 dark:text-blue-400"   },
-              { label: "Perangkat Daerah", value: agencies.length,  suffix: "+", display: null, Icon: Building2, topBg: "from-indigo-500 to-indigo-600", iconBg: "bg-indigo-100 dark:bg-indigo-500/10", iconColor: "text-indigo-600 dark:text-indigo-400" },
-              { label: "Kategori Layanan", value: 8,               suffix: "+", display: null, Icon: Layers,    topBg: "from-violet-500 to-violet-600", iconBg: "bg-violet-100 dark:bg-violet-500/10", iconColor: "text-violet-600 dark:text-violet-400" },
+              { label: "Aplikasi Aktif",    value: isMounted ? services.length : 0,  suffix: "+", display: null, Icon: Activity,  topBg: "from-blue-500 to-blue-600",   iconBg: "bg-blue-100 dark:bg-blue-500/10",   iconColor: "text-blue-600 dark:text-blue-400"   },
+              { label: "Perangkat Daerah", value: isMounted ? (opdList.length > 0 ? opdList.length : agencies.length) : 0,  suffix: "+", display: null, Icon: Building2, topBg: "from-indigo-500 to-indigo-600", iconBg: "bg-indigo-100 dark:bg-indigo-500/10", iconColor: "text-indigo-600 dark:text-indigo-400" },
+              { label: "Kategori Layanan", value: isMounted ? uniqueCategories.length : 0, suffix: "+", display: null, Icon: Layers,    topBg: "from-violet-500 to-violet-600", iconBg: "bg-violet-100 dark:bg-violet-500/10", iconColor: "text-violet-600 dark:text-violet-400" },
               { label: "Akses Transparan", value: 0,               suffix: "",  display: "24/7", Icon: Clock,   topBg: "from-sky-500 to-sky-600",     iconBg: "bg-sky-100 dark:bg-sky-500/10",     iconColor: "text-sky-600 dark:text-sky-400"     },
             ] as const).map((stat, i) => (
               <motion.div
@@ -328,19 +347,19 @@ export default function Home() {
                   hidden: { opacity: 0, y: 24 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                 }}
-                className="relative group p-5 md:p-6 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-900/20 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+                className="relative group p-3.5 sm:p-5 md:p-6 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-blue-900/20 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
               >
                 {/* Gradient top accent that slides in on hover */}
                 <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${stat.topBg} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300`} />
 
-                <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl mb-4 transition-all duration-300 ${stat.iconBg}`}>
-                  <stat.Icon className={`w-5 h-5 ${stat.iconColor}`} />
+                <div className={`inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl mb-2 sm:mb-4 transition-all duration-300 ${stat.iconBg}`}>
+                  <stat.Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.iconColor}`} />
                 </div>
 
-                <div className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-1.5 tabular-nums">
-                  {stat.display ?? <AnimatedNumber value={stat.value} suffix={stat.suffix} />}
+                <div className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-1 tabular-nums" suppressHydrationWarning>
+                  {stat.display ?? (isMounted ? <AnimatedNumber value={stat.value} suffix={stat.suffix} /> : <span>0{stat.suffix}</span>)}
                 </div>
-                <div className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{stat.label}</div>
+                <div className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider sm:tracking-widest">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -348,7 +367,7 @@ export default function Home() {
       </section>
 
       {/* Main Services Section */}
-      <section id="layanan" className="py-24 px-4 container mx-auto scroll-mt-16">
+      <section id="layanan" className="py-14 sm:py-24 px-3 sm:px-4 container mx-auto scroll-mt-16">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -365,21 +384,44 @@ export default function Home() {
           </p>
         </motion.div>
 
-        {/* Tabs for Service Type (Desktop Only) */}
-        <div className="hidden md:flex flex-wrap justify-center gap-4 mb-8">
-          {(["Semua", "Layanan Publik", "Administrasi Pemerintahan"] as const).map((type) => (
-            <button
-              key={type}
-              onClick={() => setActiveType(type)}
-              className={`px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all shadow-sm ${
-                activeType === type
-                  ? "bg-blue-600 text-white shadow-blue-500/30 scale-105"
-                  : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-105 border border-slate-200 dark:border-slate-700"
-              }`}
-            >
-              {type}
-            </button>
-          ))}
+        {/* Tabs for Service Type (Desktop Only - Smooth Pill Glide) */}
+        <div className="hidden md:flex justify-center mb-10">
+          <div className="inline-flex items-center p-1.5 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 backdrop-blur-md shadow-inner gap-1">
+            {(["Semua", "Layanan Publik", "Administrasi Pemerintahan"] as const).map((type) => {
+              const isActive = activeType === type;
+              const count = typeCounts[type];
+              return (
+                <button
+                  key={type}
+                  onClick={() => setActiveType(type)}
+                  className={`relative px-6 py-2.5 rounded-full text-sm font-bold transition-colors duration-200 flex items-center gap-2.5 z-10 ${
+                    isActive
+                      ? "text-white"
+                      : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCatalogTypePill"
+                      className="absolute inset-0 bg-blue-600 rounded-full shadow-md shadow-blue-500/30 -z-10"
+                      transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                    />
+                  )}
+                  <span>{type}</span>
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded-full font-semibold transition-colors ${
+                      isActive
+                        ? "bg-blue-700/70 text-white"
+                        : "bg-slate-200/80 dark:bg-slate-700 text-slate-500 dark:text-slate-400"
+                    }`}
+                    suppressHydrationWarning
+                  >
+                    {isMounted ? count : 0}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Filter Categories (Horizontal Scrollable + Pop-up Modal) */}
@@ -458,25 +500,46 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* Paginated Grid Services */}
+        {/* Paginated Grid Services with Staggered Cascading Animation */}
         {!loading && filteredServices.length > 0 && (
           <div className="w-full relative">
             <AnimatePresence mode="wait">
               <motion.div 
-                key={currentPage}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6"
+                key={`${currentPage}-${activeType}-${selectedCategory}-${searchQuery ? 'search' : 'all'}`}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: shouldReduceMotion ? 0 : 0.04,
+                      delayChildren: 0.02
+                    }
+                  },
+                  exit: { opacity: 0, transition: { duration: 0.15 } }
+                }}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 min-w-0 max-w-full"
               >
                 {serviceChunks[currentPage - 1]?.map((service) => (
-                  <div key={service.id} className="h-full">
+                  <motion.div 
+                    key={service.id}
+                    variants={{
+                      hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+                      visible: { 
+                        opacity: 1, 
+                        y: 0, 
+                        transition: { duration: 0.35, ease: "easeOut" } 
+                      }
+                    }}
+                    className="h-full"
+                  >
                     <ServiceCard 
                       service={service} 
                       onClick={(s) => setSelectedService(s)} 
                     />
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </AnimatePresence>
@@ -575,10 +638,10 @@ export default function Home() {
                 </div>
 
                 {/* Indikator Halaman */}
-                <div className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-1">
-                  <span>Halaman <strong className="text-slate-800 dark:text-slate-200">{currentPage}</strong> dari <strong className="text-slate-800 dark:text-slate-200">{serviceChunks.length}</strong></span>
+                <div className="text-xs font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-1" suppressHydrationWarning>
+                  <span>Halaman <strong className="text-slate-800 dark:text-slate-200">{currentPage}</strong> dari <strong className="text-slate-800 dark:text-slate-200">{isMounted ? serviceChunks.length : 1}</strong></span>
                   <span>•</span>
-                  <span>Total {filteredServices.length} Layanan</span>
+                  <span>Total {isMounted ? filteredServices.length : 0} Layanan</span>
                 </div>
               </div>
             )}
@@ -621,31 +684,48 @@ export default function Home() {
                 <div className="flex xl:flex-col overflow-x-auto xl:overflow-y-auto max-h-[60vh] hide-scrollbar p-2">
                   <button
                     onClick={() => setSelectedOpd(null)}
-                    className={`flex-shrink-0 xl:w-full text-left px-5 py-3.5 m-1 rounded-xl text-sm font-semibold transition-all ${
+                    className={`relative flex-shrink-0 xl:w-full text-left px-5 py-3.5 m-1 rounded-xl text-sm font-semibold transition-all duration-200 z-10 ${
                       selectedOpd === null 
-                        ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300" 
+                        ? "text-indigo-700 dark:text-indigo-300" 
                         : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50"
                     }`}
                   >
+                    {selectedOpd === null && (
+                      <motion.div
+                        layoutId="activeOpdIndicator"
+                        className="absolute inset-0 bg-indigo-50 dark:bg-indigo-500/20 rounded-xl -z-10 border border-indigo-200/50 dark:border-indigo-500/30"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
                     Sorotan Utama
                   </button>
                   {agencies.map(agency => {
                     const count = filteredByType.filter(s => s.agency === agency).length;
+                    const isSelected = selectedOpd === agency;
                     return (
                       <button
                         key={agency}
                         onClick={() => setSelectedOpd(agency)}
-                        className={`flex-shrink-0 xl:w-full text-left px-5 py-3.5 m-1 rounded-xl text-sm font-medium transition-all flex justify-between items-center gap-4 ${
-                          selectedOpd === agency 
-                            ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300" 
+                        className={`relative flex-shrink-0 xl:w-full text-left px-5 py-3.5 m-1 rounded-xl text-sm font-medium transition-all duration-200 flex justify-between items-center gap-4 z-10 ${
+                          isSelected 
+                            ? "text-indigo-700 dark:text-indigo-300 font-semibold" 
                             : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50"
                         }`}
                       >
+                        {isSelected && (
+                          <motion.div
+                            layoutId="activeOpdIndicator"
+                            className="absolute inset-0 bg-indigo-50 dark:bg-indigo-500/20 rounded-xl -z-10 border border-indigo-200/50 dark:border-indigo-500/30"
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                          />
+                        )}
                         <span className="truncate">{agency}</span>
-                        <span className={`px-2.5 py-1 rounded-full text-xs font-bold shrink-0 ${
-                           selectedOpd === agency ? "bg-indigo-200/50 dark:bg-indigo-500/30 text-indigo-700 dark:text-indigo-300" : "bg-slate-100 dark:bg-slate-700 text-slate-500"
-                        }`}>
-                          {count}
+                        <span className={`px-2.5 py-1 rounded-full text-xs font-bold shrink-0 transition-colors ${
+                           isSelected 
+                             ? "bg-indigo-200/60 dark:bg-indigo-500/40 text-indigo-700 dark:text-indigo-300" 
+                             : "bg-slate-100 dark:bg-slate-700 text-slate-500"
+                        }`} suppressHydrationWarning>
+                          {isMounted ? count : 0}
                         </span>
                       </button>
                     )
@@ -656,31 +736,56 @@ export default function Home() {
 
             {/* OPD Services Grid */}
             <div className="flex-1 min-w-0">
-              <motion.div 
-                key={selectedOpd || "all"} // Force re-render animation when OPD changes
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white truncate pr-4">
-                    {selectedOpd ? selectedOpd : "Layanan Unggulan Daerah"}
-                  </h3>
-                </div>
+              <div className="mb-6 flex items-center justify-between">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white truncate pr-4">
+                  {selectedOpd ? selectedOpd : "Layanan Unggulan Daerah"}
+                </h3>
+              </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={selectedOpd || "all"}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: shouldReduceMotion ? 0 : 0.05,
+                        delayChildren: 0.02
+                      }
+                    },
+                    exit: { opacity: 0, transition: { duration: 0.15 } }
+                  }}
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 min-w-0 max-w-full"
+                >
                   {opdServices.length > 0 ? (
                     opdServices.map((service) => (
-                      <ServiceCard
+                      <motion.div
                         key={`opd-${service.id}`}
-                        service={service}
-                        onClick={(s) => setSelectedService(s)}
-                      />
+                        variants={{
+                          hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+                          visible: { 
+                            opacity: 1, 
+                            y: 0, 
+                            transition: { duration: 0.35, ease: "easeOut" } 
+                          }
+                        }}
+                      >
+                        <ServiceCard
+                          service={service}
+                          onClick={(s) => setSelectedService(s)}
+                        />
+                      </motion.div>
                     ))
                   ) : (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      variants={{
+                        hidden: { opacity: 0 },
+                        visible: { opacity: 1 }
+                      }}
                       className="col-span-full py-16 text-center"
                     >
                       <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -690,8 +795,8 @@ export default function Home() {
                       <p className="text-sm text-slate-400 dark:text-slate-500 mt-1">Layanan akan ditambahkan saat tersedia.</p>
                     </motion.div>
                   )}
-                </div>
-              </motion.div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

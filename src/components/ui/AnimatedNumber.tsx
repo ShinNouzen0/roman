@@ -29,5 +29,6 @@ export default function AnimatedNumber({ value, suffix = "" }: { value: number; 
     observer.observe(el);
     return () => observer.disconnect();
   }, [value, triggered]);
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span ref={ref} suppressHydrationWarning>{count}{suffix}</span>;
 }
+

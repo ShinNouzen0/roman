@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  slug        String    @unique
+  name        String
+  description String?
+  icon        String?
+  color       String?
+  orderIndex  Int       @default(0) @map("order_index")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("categories")
+}
+
+model Opd {
+  id           String    @id @default(uuid())
+  name         String
+  shortName    String?   @map("short_name")
+  category     String?   // Dinas, Badan, Sekretariat, RSUD, Kecamatan
+  headOfAgency String?   @map("head_of_agency")
+  address      String?
+  phone        String?
+  email        String?
+  website      String?
+  logoUrl      String?   @map("logo_url")
+  status       String    @default("active") // active, maintenance, inactive
+  lastAudit    String?   @map("last_audit")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("opd")
+}
+
+model Service {
+  id           String    @id @default(uuid())
+  name         String
+  description  String    @db.Text
+  serviceType  String    @default("Layanan Publik") @map("service_type") // Layanan Publik | Administrasi Pemerintahan
+  category     String    // e.g. Kependudukan & Catatan Sipil
+  agency       String    // e.g. Dinas Kependudukan dan Pencatatan Sipil
+  manager      String?
+  logo         String    @default("/logos/default.png")
+  url          String
+  status       String    @default("active") // active, maintenance, inactive, development
+  users        String?   @default("0")
+  lastUpdated  String?   @map("last_updated")
+  contactEmail String?   @map("contact_email")
+  contactPhone String?   @map("contact_phone")
+  isFeatured   Boolean   @default(false) @map("is_featured")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([agency])
+  @@index([status])
+  @@index([serviceType])
+  @@index([isFeatured])
+  @@map("services")
+}
+
+model AdminUser {
+  id           String    @id @default(uuid())
+  name         String
+  username     String    @unique
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  agency       String
+  role         String    @default("Admin OPD") // Super Admin | Admin OPD
+  status       String    @default("active")
+  lastLogin    String?   @map("last_login")
+  phone        String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("admin_users")
+}
+
+model Faq {
+  id        String    @id @default(uuid())
+  category  String    @default("layanan")
+  question  String
+  answer    String    @db.Text
+  order     Int       @default(0)
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("faqs")
+}
+
+model SpbeRecord {
+  id           String    @id @default(uuid())
+  tahun        Int       @unique
+  indeks       Float
+  predikat     String
+  aspectScores Float[]   @map("aspect_scores")
+  domainScores Json      @map("domain_scores")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("spbe_records")
+}
+
+model AuditLog {
+  id          String    @id @default(uuid())
+  action      String    // CREATE, UPDATE, DELETE, STATUS_CHANGE
+  entity      String    // SERVICE, OPD, SYSTEM, SETTINGS, SPBE, FAQ, USER
+  entityId    String?   @map("entity_id")
+  details     String    @db.Text
+  performedBy String    @default("Admin") @map("performed_by")
+  timestamp   String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([entity, entityId])
+  @@map("audit_logs")
+}
+
+model SystemSetting {
+  key       String    @id
+  value     Json
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("system_settings")
+}
